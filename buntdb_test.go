@@ -1342,7 +1342,7 @@ func TestAutoShrink(t *testing.T) {
 	}
 }
 
-// test database format loading
+// TestDatabaseFormat tests database format loading
 func TestDatabaseFormat(t *testing.T) {
 	// should succeed
 	func() {
@@ -1442,7 +1442,7 @@ func TestInsertsAndDeleted(t *testing.T) {
 	}
 }
 
-// test index compare functions
+// TestIndexCompare tests index compare functions
 func TestIndexCompare(t *testing.T) {
 	if !IndexFloat("1.5", "1.6") {
 		t.Fatalf("expected true, got false")
@@ -1485,7 +1485,7 @@ func TestIndexCompare(t *testing.T) {
 	}
 }
 
-// test opening a folder.
+// TestOpeningAFolder tests opening a folder.
 func TestOpeningAFolder(t *testing.T) {
 	if err := os.RemoveAll("dir.tmp"); err != nil {
 		t.Fatal(err)
@@ -1503,7 +1503,7 @@ func TestOpeningAFolder(t *testing.T) {
 	}
 }
 
-// test opening an invalid resp file.
+// TestOpeningInvalidDatabaseFile tests opening an invalid resp file.
 func TestOpeningInvalidDatabaseFile(t *testing.T) {
 	if err := os.RemoveAll("data.db"); err != nil {
 		t.Fatal(err)
@@ -1521,7 +1521,7 @@ func TestOpeningInvalidDatabaseFile(t *testing.T) {
 	}
 }
 
-// test closing a closed database.
+// TestOpeningClosedDatabase tests closing a closed database.
 func TestOpeningClosedDatabase(t *testing.T) {
 	if err := os.RemoveAll("data.db"); err != nil {
 		t.Fatal(err)
@@ -1549,7 +1549,7 @@ func TestOpeningClosedDatabase(t *testing.T) {
 	}
 }
 
-// test shrinking a database.
+// TestShrink checks a case when shrinking a database.
 func TestShrink(t *testing.T) {
 	db := testOpen(t)
 	defer testClose(db)
@@ -2282,7 +2282,7 @@ func benchSetGet(t *testing.B, set, persist, random bool, batch int) {
 	}
 }
 
-// Set Persist
+// Benchmark_Set_Persist_Random_1; Set Persist
 func Benchmark_Set_Persist_Random_1(t *testing.B) {
 	benchSetGet(t, true, true, true, 1)
 }
@@ -2302,7 +2302,7 @@ func Benchmark_Set_Persist_Sequential_100(t *testing.B) {
 	benchSetGet(t, true, true, false, 100)
 }
 
-// Set NoPersist
+// Benchmark_Set_NoPersist_Random_1; Set NoPersist
 func Benchmark_Set_NoPersist_Random_1(t *testing.B) {
 	benchSetGet(t, true, false, true, 1)
 }
@@ -2322,7 +2322,7 @@ func Benchmark_Set_NoPersist_Sequential_100(t *testing.B) {
 	benchSetGet(t, true, false, false, 100)
 }
 
-// Get
+// Benchmark_Get_1; Get
 func Benchmark_Get_1(t *testing.B) {
 	benchSetGet(t, false, false, false, 1)
 }
@@ -2393,8 +2393,7 @@ func Benchmark_Descend_10000(t *testing.B) {
 	benchScan(t, false, 10000)
 }
 
-/*
-func Benchmark_Spatial_2D(t *testing.B) {
+/* TestCoverCloseAlreadyClosed; func Benchmark_Spatial_2D(t *testing.B) {
 	N := 100000
 	db, _, _ := benchOpenFillData(t, N, true, true, false, true, 100)
 	defer benchClose(t, false, db)

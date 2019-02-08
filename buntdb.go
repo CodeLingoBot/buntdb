@@ -1243,7 +1243,7 @@ func (dbi *dbItem) writeSetTo(buf []byte) []byte {
 	return buf
 }
 
-// writeSetTo writes an item as a single DEL record to the a bufio Writer.
+// writeDeleteTo writes an item as a single DEL record to the a bufio Writer.
 func (dbi *dbItem) writeDeleteTo(buf []byte) []byte {
 	buf = appendArray(buf, 2)
 	buf = appendBulkString(buf, "del")
